@@ -5,12 +5,12 @@ Here is the chatbox
 
 
 Login and Sign Up page, when user logins, it goes to the chatbox
-![Screenshot of the app](./screensjots/login.png)
+![Screenshot of the app](./screenshots/login.png)
 
 
 Here is the mongoDB connection to the server
-![Screenshot of the app](./screensjots/mongodb.png)
+![Screenshot of the app](./screenshots/mongodb.png)
 
 
 Here is postman testing
-![Screenshot of the app](./screensjots/postman.png)
+![Screenshot of the app](./screenshots/postman.png)
