@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat App</title>
+    <link rel="stylesheet" href="/style.css">
+    <script src="/socket.io/socket.io.js"></script>
+</head>
+<body>
+    <section class="chat-section">
+        <div class="chat-container">
+            <div class="chat-box">
+                <h1>Chat App</h1>
+                <div class="room-selection">
+                    Select Room to Join: 
+                    <select id="group_name">
+                        <option value="devops">DevOps</option>
+                        <option value="cloud computing">Cloud Computing</option>
+                        <option value="covid19">COVID-19</option>
+                        <option value="sports">Sports</option>
+                        <option value="nodeJS">NodeJS</option>
+                    </select>
+                    <button onclick="joinGroup()">Join Group</button>
+                </div>
+                <div class="message-input">
+                    <input type="text" id="group_message" placeholder="Enter Message">
+                    <button onclick="sendGroupMessage()">Send Message</button>
+                </div>
+            </div>
+            <div class="chat-form">
+                <input type="text" id="message" placeholder="Type a message...">
+                <button id="send">Send</button>
+            </div>
+        </div>
+    </section>
+    <script src="/clientSide.js"></script>
+</body>
+</html>
