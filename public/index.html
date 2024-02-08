@@ -8,49 +8,59 @@
     <script src="/socket.io/socket.io.js"></script>
 </head>
 <body>
-    <h2>Login</h2>
-    <form action="/login" method="post">
-        <label for="username">Username:</label><br>
-        <input type="text" id="username" name="username"><br>
-        <label for="password">Password:</label><br>
-        <input type="password" id="password" name="password"><br>
-        <input type="submit" value="Login">
-    </form>
+    <div id="login-section">
+        <h2>Login</h2>
+        <form action="/login" method="post">
+            <label for="username">Username:</label><br>
+            <input type="text" id="username" name="username"><br>
+            <label for="password">Password:</label><br>
+            <input type="password" id="password" name="password"><br>
+            <input type="submit" value="Login">
+        </form>
+    </div>
 
-    <h2>Signup</h2>
-    <form action="/signup" method="post">
-        <label for="new_username">Username:</label><br>
-        <input type="text" id="new_username" name="username"><br>
-        <label for="new_password">Password:</label><br>
-        <input type="password" id="new_password" name="password"><br>
-        <input type="submit" value="Signup">
-    </form>
-    <section class="chat-section">
-        <div class="chat-container">
-            <div class="chat-box">
-                <h1>Chat App</h1>
-                <div class="room-selection">
-                    Select Room to Join: 
-                    <select id="group_name">
-                        <option value="devops">DevOps</option>
-                        <option value="cloud computing">Cloud Computing</option>
-                        <option value="covid19">COVID-19</option>
-                        <option value="sports">Sports</option>
-                        <option value="nodeJS">NodeJS</option>
-                    </select>
-                    <button onclick="joinGroup()">Join Group</button>
+    <div id="signup-section">
+        <h2>Signup</h2>
+        <form action="/signup" method="post">
+            <label for="firstname">First Name:</label><br>
+            <input type="text" id="firstname" name="firstname"><br>
+            <label for="lastname">Last Name:</label><br>
+            <input type="text" id="lastname" name="lastname"><br>
+            <label for="email">Email:</label><br>
+            <input type="email" id="email" name="email"><br>
+            <label for="username">Username:</label><br>
+            <input type="text" id="new_username" name="username"><br>
+            <label for="password">Password:</label><br>
+            <input type="password" id="new_password" name="password"><br>
+            <input type="submit" value="Signup">
+        </form>
+    </div>
+    
+    <div id="chat-section">
+        <section class="chat-section">
+            <div class="chat-container">
+                <div class="chat-box">
+                    <h1>Chat App</h1>
+                    <div class="room-selection">
+                        Select Room to Join: 
+                        <select id="group_name">
+                            <option value="devops">DevOps</option>
+                            <option value="cloud computing">Cloud Computing</option>
+                            <option value="covid19">COVID-19</option>
+                            <option value="sports">Sports</option>
+                            <option value="nodeJS">NodeJS</option>
+                        </select>
+                        <button onclick="joinGroup()">Join Group</button>
+                    </div>
                 </div>
-                <div class="message-input">
-                    <input type="text" id="group_message" placeholder="Enter Message">
-                    <button onclick="sendGroupMessage()">Send Message</button>
+                <div class="chat-form">
+                    <input type="text" id="message" placeholder="Type a message...">
+                    <button id="send">Send</button>
                 </div>
             </div>
-            <div class="chat-form">
-                <input type="text" id="message" placeholder="Type a message...">
-                <button id="send">Send</button>
-            </div>
-        </div>
-    </section>
-    <script src="/clientSide.js"></script>
+        </section>
+    </div>
+
+    <!-- <script src="/clientSide.js"></script> -->
 </body>
 </html>
