@@ -18,7 +18,7 @@ clientSocket.on('new_group_message', (data) => {
     console.log(data);
     const message_list = document.getElementById('message_list');
     const message = document.createElement('p');
-    message.innerHTML = `<b>${data.group_name}:${data.senderId}:<b/> ${data.message}`;
+    message.innerHTML = `<b>${data.groupName}:${data.senderId}:<b/> ${data.message}`;
     message_list.appendChild(message);
 });
 clientSocket.on('disconnect', () => {
@@ -42,15 +42,15 @@ function joinGroup() {
 }
 
 function sendGroupMessage() {
-    const group_name = document.getElementById('group_name').value;
+    const groupName = document.getElementById('group_name').value; 
     const group_message = document.getElementById('group_message').value;
     const message_list = document.getElementById('message_list');
     const msg = {
         message: group_message,
         sender: 'client',
         senderId: clientSocket.id,
-        group_name: group_name
-    }
+        groupName: groupName 
+    };
 
     // Add the new message
     message_list.innerHTML += '<p>' + group_message + '</p>';
@@ -66,7 +66,7 @@ document.getElementById('login-form').addEventListener('submit', function(event)
     event.preventDefault();
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
-    fetch('/login', {
+    fetch('/user/login', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -75,15 +75,7 @@ document.getElementById('login-form').addEventListener('submit', function(event)
     })
     .then(response => response.json())
     .then(data => {
-        if (data.token) {
-            // Store the JWT for future requests
-            localStorage.setItem('token', data.token);
-            // Connect to the socket server with the JWT token
-            clientSocket = io('http://localhost:3000', {
-                extraHeaders: {
-                    Authorization: "Bearer " + data.token
-                }
-            });
+        if (data.status === 'success') {
             // After successful login
             document.getElementById('login-section').style.display = 'none';
             document.getElementById('signup-section').style.display = 'none';
@@ -101,26 +93,22 @@ document.getElementById('login-form').addEventListener('submit', function(event)
 // Handle signup form submission
 document.getElementById('signup-form').addEventListener('submit', function(event) {
     event.preventDefault();
+    event.preventDefault();
+    const firstname = document.getElementById('firstname').value;
+    const lastname = document.getElementById('lastname').value;
+    const email = document.getElementById('email').value;
     const username = document.getElementById('new_username').value;
     const password = document.getElementById('new_password').value;
-    fetch('/signup', {
+    fetch('/user/signup', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ username, password }),
+        body: JSON.stringify({ firstname, lastname, username, email, password }),
     })
     .then(response => response.json())
     .then(data => {
-        if (data.token) {
-            // Store the JWT for future requests
-            localStorage.setItem('token', data.token);
-            // Connect to the socket server with the JWT token
-            clientSocket = io('http://localhost:3000', {
-                extraHeaders: {
-                    Authorization: "Bearer " + data.token
-                }
-            });
+        if (data.status === 'success') {
             // After successful signup
             document.getElementById('login-section').style.display = 'none';
             document.getElementById('signup-section').style.display = 'none';
@@ -134,4 +122,5 @@ document.getElementById('signup-form').addEventListener('submit', function(event
         console.error('Error:', error);
     });
 });
+
 

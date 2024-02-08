@@ -1,7 +1,14 @@
-const express = require("express");
-const bcrypt = require("bcryptjs");
-const userModel = require('../model/user.js');
+import express from 'express';
+import bcrypt from 'bcryptjs';
+import userModel from './model/user.js';
+import usersRoutes from './routes/users.js';
+
+const app = express();
 const routes = express.Router();
+
+
+app.use(express.json());
+app.use('/users', usersRoutes);
 
 // Signup route
 routes.post('/signup', async (req, res) => {
@@ -34,6 +41,12 @@ routes.post('/signup', async (req, res) => {
     }
 });
 
+app.use('/', routes);
+
+app.listen(3000, () => {
+    console.log("Server is running on port 3000");
+});
+
 // Login route
 routes.post("/login", async (req, res) => {
     try {
@@ -55,4 +68,5 @@ routes.post("/login", async (req, res) => {
     }
 });
 
+export default userRoutes;
 module.exports = routes;
