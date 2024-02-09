@@ -12,7 +12,7 @@ app.use('/users', usersRoutes);
 
 // Signup route
 routes.post('/signup', async (req, res) => {
-    try {
+    try {/
         const { firstname, lastname, username, email, password } = req.body;
 
         if (!firstname || !lastname || !username || !email || !password) {
